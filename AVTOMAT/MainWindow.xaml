@@ -25,5 +25,18 @@
                    Text="SCORE - 0"
                    FontSize="30"
                    Margin="10"/>
+        <Border x:Name="GridBorder"
+                Grid.Row="1"
+                BorderBrush="{StaticResource GridLineColor}"
+                BorderThickness="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <UniformGrid x:Name="GameGrid"
+                         Width="400"
+                         Height="400"
+                         Background="{StaticResource GridBackgroundColor}">
+                
+            </UniformGrid>
+        </Border>
     </Grid>
 </Window>
