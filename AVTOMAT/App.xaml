@@ -1,0 +1,14 @@
+﻿<Application x:Class="AVTOMAT.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AVTOMAT"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         <SolidColorBrush x:Key="BackgroundColor">#0047AB</SolidColorBrush>
+        <SolidColorBrush x:Key="GridBackgroundColor">#1E90FF</SolidColorBrush>
+        <SolidColorBrush x:Key="GridLineColor">#42AAFF</SolidColorBrush>
+        <SolidColorBrush x:Key="OverlayColor">#00416A</SolidColorBrush>
+        <SolidColorBrush x:Key="TextColot">#FFFFFF</SolidColorBrush>
+        <FontFamily x:Key="MainFont">Assets/#RIMMA_SANS-BOLD_2</FontFamily>
+    </Application.Resources>
+</Application>

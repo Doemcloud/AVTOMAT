@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="assets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="assets\Body.png" />
+      <Resource Include="assets\Body.png" />
+      <None Remove="assets\DeadBody.png" />
+      <Resource Include="assets\DeadBody.png" />
+      <None Remove="assets\DeadHead.png" />
+      <Resource Include="assets\DeadHead.png" />
+      <None Remove="assets\Empty.png" />
+      <Resource Include="assets\Empty.png" />
+      <None Remove="assets\Food.png" />
+      <Resource Include="assets\Food.png" />
+      <None Remove="assets\Head.png" />
+      <Resource Include="assets\Head.png" />
+      <None Remove="assets\icon.ico" />
+      <Resource Include="assets\icon.ico" />
+      <None Remove="assets\RIMMA_SANS-BOLD_2.ttf" />
+      <Resource Include="assets\RIMMA_SANS-BOLD_2.ttf" />
+    </ItemGroup>
+
+</Project>
