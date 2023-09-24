@@ -32,7 +32,6 @@ namespace AVTOMAT
             InitializeComponent();
             gridImages = SetupGrid();
 
-
         }
 
         private Image[,] SetupGrid()
@@ -51,7 +50,6 @@ namespace AVTOMAT
                     };
                     images[r, c] = image;
                     GameGrid.Children.Add(image);
-                    
                 }    
             }
 
