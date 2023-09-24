@@ -19,3 +19,4 @@ C:\Users\Cote\AVTOMAT\AVTOMAT\obj\Debug\net7.0-windows\refint\AVTOMAT.dll
 C:\Users\Cote\AVTOMAT\AVTOMAT\obj\Debug\net7.0-windows\AVTOMAT.pdb
 C:\Users\Cote\AVTOMAT\AVTOMAT\obj\Debug\net7.0-windows\AVTOMAT.genruntimeconfig.cache
 C:\Users\Cote\AVTOMAT\AVTOMAT\obj\Debug\net7.0-windows\ref\AVTOMAT.dll
+C:\Users\Cote\AVTOMAT\AVTOMAT\obj\Debug\net7.0-windows\App.baml

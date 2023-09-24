@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Windows.Media.Animation;
 
 namespace AVTOMAT
@@ -12,10 +13,12 @@ namespace AVTOMAT
         public GridValue [,] Grid { get; }
         public Direction Dir { get; private set; }
         public int Score{ get; private set; }
+        public bool GameOver{ get; private set; }
 
 
-        private readonly LinkedList<Position> snakeAPositions = new LinkedList<Position>();
-        private readonly Random random = new Random();
+        private readonly LinkedList<Direction> dirChanges = new LinkedList<Direction>();
+        private readonly LinkedList<Position> _snakeAPositions = new LinkedList<Position>();
+        private readonly Random _random = new Random();
 
         public GameState(int rows, int cols)
         {
@@ -36,11 +39,11 @@ namespace AVTOMAT
             for (int c = 1; c <= 3; c++)
             {
                 Grid[r, c] = GridValue.SnakeA;
-                snakeAPositions.AddFirst(new Position(r, c));
+                _snakeAPositions.AddFirst(new Position(r, c));
             }
         }
 
-        private IEnumerable<Position> emptyPositions()
+        private IEnumerable<Position> EmptyPositions()
         {
             for (int r = 0; r < Rows; r++)
             {
@@ -56,51 +59,75 @@ namespace AVTOMAT
 
         private void AddFood()
         {
-            List<Position> empty = new List<Position>(emptyPositions());
+            List<Position> empty = new List<Position>(EmptyPositions());
 
             if (empty.Count == 0)
             {
                 return;
             }
 
-            Position pos = empty[random.Next(empty.Count)];
+            Position pos = empty[_random.Next(empty.Count)];
             Grid[pos.Row, pos.Col] = GridValue.Food;
         }
 
         public Position HeadPosition()
         {
-            return snakeAPositions.First.Value;
+            return _snakeAPositions.First.Value;
         }
 
         public Position TailPosition()
         {
-            return snakeAPositions.Last.Value;
+            return _snakeAPositions.Last.Value;
         }
 
 
         public IEnumerable<Position> SnakeAPositions()
         {
-            return snakeAPositions;
+            return _snakeAPositions;
         }
 
         private void AddHead(Position pos)
         {
-            snakeAPositions.AddFirst(pos);
+            _snakeAPositions.AddFirst(pos);
             Grid[pos.Row, pos.Col] = GridValue.SnakeA;
             
         }
 
         private void RemoveTail()
         {
-            Position tail = snakeAPositions.Last.Value;
+            Position tail = _snakeAPositions.Last.Value;
             Grid[tail.Row, tail.Col] = GridValue.Empty;
-            snakeAPositions.RemoveLast();
+            _snakeAPositions.RemoveLast();
             
-        } 
+        }
 
+        private Direction GetLastDirection()
+        {
+            if (dirChanges.Count == 0)
+            {
+                return Dir;
+            }
+            return dirChanges.Last.Value;
+        }
+
+        private bool CanChangeDirection(Direction newDir)
+        {
+            if (dirChanges.Count == 2)
+            {
+                return false;
+            }
+
+            Direction lastDir = GetLastDirection();
+            return newDir != lastDir && newDir != lastDir.Opposite();
+        }
+        
         public void ChangeDirection(Direction dir)
         {
-            Dir = dir;
+            // если значение DIRECTION изменяется
+            if (CanChangeDirection(dir))
+            {
+                dirChanges.AddLast(dir);
+            }
         }
 
         private bool OutsideGrid(Position pos)
@@ -124,6 +151,13 @@ namespace AVTOMAT
 
         public void Move()
         {
+            if (dirChanges.Count > 0)
+            {
+                Dir = dirChanges.First.Value;
+                dirChanges.RemoveFirst();
+            }
+            
+            
             Position newHeadPos = HeadPosition().Translate(Dir);
             GridValue hit = Willhit(newHeadPos);
 

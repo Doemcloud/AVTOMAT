@@ -5,38 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AVTOMAT"
         mc:Ignorable="d"
-        Title="SnakeMain" Height="500" Width="800"
+        Title="SnakeMain" Height="600" Width="800"
+        MinWidth="300" MinHeight="300"
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource TextColot}"
         FontFamily="{StaticResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="assets/icon.ico">
+        Icon="assets/icon.ico"
+        PreviewKeyDown="MainWindow_OnPreviewKeyDown"
+        KeyDown="MainWindow_OnKeyDown">
         
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Viewbox>
+                <Grid>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
         
         
-        <TextBlock x:Name="ScoreText"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="SCORE - 0"
-                   FontSize="30"
-                   Margin="10"/>
-        <Border x:Name="GridBorder"
-                Grid.Row="1"
-                BorderBrush="{StaticResource GridLineColor}"
-                BorderThickness="7"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-            <UniformGrid x:Name="GameGrid"
-                         Width="400"
-                         Height="400"
-                         Background="{StaticResource GridBackgroundColor}">
-                
-            </UniformGrid>
-        </Border>
-    </Grid>
+                        <TextBlock x:Name="ScoreText"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="SCORE - 0"
+                                   FontSize="30"
+                                   Margin="10"/>
+                        <Border x:Name="GridBorder"
+                                Grid.Row="1"
+                                BorderBrush="{StaticResource GridLineColor}"
+                                BorderThickness="7"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="20,0,20,20">
+                                <UniformGrid x:Name="GameGrid"
+                                             Width="400"
+                                             Height="400"
+                                             Background="{StaticResource GridBackgroundColor}"
+                                             SnapsToDevicePixels="True">
+                                </UniformGrid>
+                        </Border>
+                        <Border x:Name="OverlayText"
+                                Grid.Row="1"
+                                Background="{StaticResource OverlayColor}"
+                                Width="{Binding Path=ActualWidth, ElementName=GridBorder}"
+                                Height="{Binding Path= ActualHeight, ElementName=GridBorder}"
+                                Margin="{Binding Path= Margin, ElementName=GridBorder}">
+                                <TextBlock x:Name="OverlayTextBlock"
+                                           Text="НАЖМИТЕ ЛЮБУЮ КНОПКУ"
+                                           FontSize="26"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           TextWrapping="Wrap"/>
+                        </Border>
+                </Grid>   
+        </Viewbox>
 </Window>

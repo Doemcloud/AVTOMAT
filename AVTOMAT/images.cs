@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace AVTOMAT
 {
-    public static class images
+    public static class Images
     {
         public readonly static ImageSource Body = LoadImage("Body.png");
         public readonly static ImageSource DeadBody = LoadImage("DeadBody.png");
