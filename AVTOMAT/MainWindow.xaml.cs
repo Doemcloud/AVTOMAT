@@ -38,7 +38,7 @@ namespace AVTOMAT
             {Direction.Right, 90}
         };
         
-        public readonly int Rows = 25, Cols = 25;
+        public readonly int Rows =15, Cols = 15;
         public readonly Image[,] GridImages;
         private GameState _gameState;
         private bool _gameRunning;
